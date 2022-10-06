@@ -58,4 +58,4 @@ const BusSchema = mongoose.Schema({
 
 const busModel = mongoose.model("Bus", BusSchema)
 
-module.exports = busModel
+module.exports = {busModel}

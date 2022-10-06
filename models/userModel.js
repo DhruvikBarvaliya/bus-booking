@@ -1,5 +1,4 @@
 const mongoose = require("mongoose")
-const { Schema } = mongoose
 
 const UserSchema = mongoose.Schema({
     role: {
@@ -17,8 +16,11 @@ const UserSchema = mongoose.Schema({
     email: {
         type: String
     },
-    age: {
+    password: {
         type: String
+    },
+    age: {
+        type: Number
     },
     gender: {
         type: String
@@ -26,15 +28,14 @@ const UserSchema = mongoose.Schema({
     address: {
         type: String
     },
-    user_id: {
-        type: Schema.ObjectId,
-        ref: 'User'
-    },
     contact_no: {
         type: String
     },
-    status: {
-        type: String
+    is_active: {
+        type: Boolean
+    },
+    is_confirmed: {
+        type: Boolean
     },
 }, {
     timestamps: true,
@@ -43,4 +44,4 @@ const UserSchema = mongoose.Schema({
 
 const userModel = mongoose.model("User", UserSchema)
 
-module.exports = userModel
+module.exports = {userModel}
