@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const { Schema } = mongoose
 
 const BusSchema = mongoose.Schema({
     bus_name: {
@@ -38,7 +39,7 @@ const BusSchema = mongoose.Schema({
         type: Array
     },
     user_id: {
-        type: ObjectId,
+        type: Schema.ObjectId,
         ref: 'User'
     },
     driver_name: {

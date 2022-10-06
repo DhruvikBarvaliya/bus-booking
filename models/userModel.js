@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const { Schema } = mongoose
 
 const UserSchema = mongoose.Schema({
     role: {
@@ -26,7 +27,7 @@ const UserSchema = mongoose.Schema({
         type: String
     },
     user_id: {
-        type: ObjectId,
+        type: Schema.ObjectId,
         ref: 'User'
     },
     contact_no: {

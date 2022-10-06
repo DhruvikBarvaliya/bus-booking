@@ -1,6 +1,7 @@
-const mongosse = require('mongoose')
+const mongoose = require('mongoose')
+const { Schema } = mongoose
 
-const BookingSchema = mongosse.Schema({
+const BookingSchema = mongoose.Schema({
 
     fare_amount: {
         type: Number
@@ -12,7 +13,7 @@ const BookingSchema = mongosse.Schema({
         type: String
     },
     user_id: {
-        type: ObjectId,
+        type: Schema.ObjectId,
         ref: 'User'
     },
     no_of_seat_book: {
@@ -22,7 +23,7 @@ const BookingSchema = mongosse.Schema({
         type: Date
     },
     bus_id: {
-        type: ObjectId,
+        type: Schema.ObjectId,
         ref: 'Bus'
     },
     departure_time: {
@@ -39,7 +40,7 @@ const BookingSchema = mongosse.Schema({
     versionKey: false
 })
 
-const bookingModel = mongosse.model("Booking", BookingSchema)
+const bookingModel = mongoose.model("Booking", BookingSchema)
 
 module.exports = bookingModel
 
