@@ -1,5 +1,7 @@
 const dotenv = require("dotenv")
 dotenv.config()
+const log = require("../utils/Logging")
+
 const mongoose = require("mongoose")
 const { userModel } = require("../models/userModel");
 const { hashPassword } = require("../utils/validations")
@@ -7,7 +9,7 @@ const { hashPassword } = require("../utils/validations")
 const connectDB = () => {
     mongoose.connect(process.env.MONGO_URI || "mongodb://localhost:27017/BusBooking")
         .then(() => {
-            console.log("Database Connected SuccessFully")
+            log.info("Database Connected SuccessFully")
             userModel.findOne({ role: "SUPAR_ADMIN", email: "dhruvik.barvaliya.blackwolve@gmail.com" }, function (err, data) {
                 if (!data) {
                     userModel.create({
@@ -24,12 +26,12 @@ const connectDB = () => {
                         is_confirmed: true,
                         is_active: true,
                     }, (e, suparAdminData) => {
-                        console.log(`Supar Admin User Created Successfully with Email "dhruvik.barvaliya.blackwolve@gmail.com" And id is :- ${suparAdminData._id}`);
+                        log.info(`Supar Admin User Created Successfully with Email "dhruvik.barvaliya.blackwolve@gmail.com" And id is :- ${suparAdminData._id}`);
                     })
                 }
             });
         })
-        .catch((err) => console.error("Could not connect to MongoDB...", err));
+        .catch((err) => log.error("Could not connect to MongoDB...", err));
 }
 
 module.exports = { connectDB } 

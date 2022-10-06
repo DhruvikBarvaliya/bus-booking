@@ -1,4 +1,5 @@
 const bookingService = require("../services/bookingService")
+const logger = require("../utils/Logging")
 
 const addBooking = (req, res) => {
     const bookingData = req.body
@@ -19,20 +20,21 @@ const addBooking = (req, res) => {
 }
 
 const getAllBooking = (req, res) => {
-    bookingService.getAllBooking.then(result => {
-        if (result) {
-            res.json({
-                success: 1,
-                message: "All Booking Data Recived",
-                data: result
-            })
-        } else {
-            res.json({
-                success: 0,
-                message: "Fail to Recive"
-            })
-        }
-    })
+    logger.info('getAllBooking route is accessed'),
+        bookingService.getAllBooking.then(result => {
+            if (result) {
+                res.json({
+                    success: 1,
+                    message: "All Booking Data Recived",
+                    data: result
+                })
+            } else {
+                res.json({
+                    success: 0,
+                    message: "Fail to Recive"
+                })
+            }
+        })
 }
 
 const getBookingByFilter = (req, res) => {
