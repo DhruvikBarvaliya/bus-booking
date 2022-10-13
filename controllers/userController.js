@@ -1,21 +1,24 @@
 const userService = require("../services/userService")
 
 const addUser = (req, res) => {
-    const userData = req.body
-    userService.addUser(userData).then(result => {
-        if (result) {
-            res.json({
-                success: 1,
-                message: "User Confirmed",
-                data: result
-            })
-        } else {
-            res.json({
-                success: 0,
-                message: "Fail to Insert"
-            })
-        }
-    })
+
+    try {
+        const userData = req.body
+        let result = userService.addUser(userData)
+        res.json({
+            success: 1,
+            message: "User Confirmed",
+            data: result
+        })
+
+    } catch (error) {
+        res.json({
+            success: 0,
+            message: "Fail to Insert",
+            error
+        })
+    }
+
 }
 
 const getAllUser = (req, res) => {
